@@ -1,0 +1,40 @@
+<div class="page-wrapper">
+  <div id="wrapper">
+    <app-sidebar></app-sidebar>
+
+    <div id="content-wrapper" class="d-flex flex-column">
+      <app-topbar></app-topbar>
+      <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+          <h1 class="h3 mb-0 text-gray-800">
+            Chargement des fiches de paie. Période :
+          </h1>
+        </div>
+        <div class="page-wrapper">
+          <ngx-dropzone (change)="onSelect($event)">
+            <ngx-dropzone-label
+              >Glisser ou cliquer ici pour charger les bulletins de
+              paie</ngx-dropzone-label
+            >
+
+            <ngx-dropzone-preview
+              *ngFor="let f of fichesPaie; index as i"
+              [removable]="true"
+              (removed)="onRemove(f)"
+              accept="application/pdf"
+              (change)="onSelect($event)"
+            >
+              <ngx-dropzone-label *ngIf="!hasError(i)"
+                >{{ getFicheName(i) }}
+              </ngx-dropzone-label>
+              <ngx-dropzone-label *ngIf="hasError(i)" class="text-danger"
+              >{{ getFicheName(i) }}
+              </ngx-dropzone-label>
+            </ngx-dropzone-preview>
+          </ngx-dropzone>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
