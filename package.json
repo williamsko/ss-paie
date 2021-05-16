@@ -2,6 +2,10 @@
   "name": "my-electron-app",
   "version": "0.0.0",
   "main": "app.js",
+  "build": {
+    "appId": "com.example.app",
+    "productName": "SS Paie"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -13,7 +17,8 @@
     "electron": "ng build --prod && npm run electron .",
     "electron:linux": "npm run build:prod && electron-builder build --linux",
     "electron:windows": "npm run build:prod && electron-builder build --windows",
-    "electron:mac": "npm run build:prod && electron-builder build --mac"
+    "electron:mac": "ng build --configuration=production && electron-builder build --mac",
+    "electron:mac-old": "npm run build:prod && electron-builder build --mac"
   },
   "private": true,
   "dependencies": {
@@ -26,9 +31,11 @@
     "@angular/platform-browser": "~10.0.2",
     "@angular/platform-browser-dynamic": "~10.0.2",
     "@angular/router": "~10.0.2",
+    "@ng-bootstrap/ng-bootstrap": "^9.1.1",
     "bootstrap": "^4.6.0",
     "jquery": "^3.5.1",
     "moment": "^2.29.1",
+    "ngx-dropzone": "^3.0.0",
     "popper.js": "^1.16.1",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
@@ -45,6 +52,7 @@
     "codelyzer": "^6.0.0-next.1",
     "concurrently": "^5.3.0",
     "electron": "^12.0.6",
+    "electron-builder": "^22.10.5",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~5.0.0",
     "karma": "~5.0.0",
