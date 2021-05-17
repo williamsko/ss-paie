@@ -1,10 +1,30 @@
 {
   "name": "my-electron-app",
+  "homepage": "./",
   "version": "0.0.0",
   "main": "app.js",
   "build": {
     "appId": "com.example.app",
-    "productName": "SS Paie"
+    "productName": "SS Paie",
+    "files": [
+      "dist/**/*",
+      "app.js",
+      "package.json"
+    ],
+    "directories": {
+      "output": "build"
+    },
+    "publish": [
+      {
+        "provider": "generic",
+        "url": "www.ss-paie.com"
+      }
+    ],
+    "mac": {
+      "identity": null,
+      "icon": "build/icons/icon.icns",
+      "artifactName": "${productName}_${version}.${ext}"
+    }
   },
   "scripts": {
     "ng": "ng",
@@ -17,7 +37,7 @@
     "electron": "ng build --prod && npm run electron .",
     "electron:linux": "npm run build:prod && electron-builder build --linux",
     "electron:windows": "npm run build:prod && electron-builder build --windows",
-    "electron:mac": "ng build --configuration=production && electron-builder build --mac",
+    "electron:mac": "ng build --configuration=production --base-href ./ && electron-builder build --mac",
     "electron:mac-old": "npm run build:prod && electron-builder build --mac"
   },
   "private": true,

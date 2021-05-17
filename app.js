@@ -2,6 +2,8 @@ const { app, BrowserWindow } = require('electron')
 const url = require("url");
 const path = require("path");
 
+// const { environment } = require('src/environments/environment.ts');
+
 let mainWindow
 
 function createWindow() {
@@ -13,15 +15,25 @@ function createWindow() {
         }
     })
 
-    mainWindow.loadURL(
-        url.format({
-            pathname: path.join(__dirname, `./dist/index.html`),
-            protocol: "file:",
-            slashes: true
-        })
-    );
-    // Open the DevTools.
-    mainWindow.webContents.openDevTools()
+    // // console.log("process.env : ", process)
+
+    // // Debug
+    // if (!environment.production) {
+    //     mainWindow.loadURL(
+    //         url.format({
+    //             pathname: require('path').join(__dirname, 'dist/index.html'),
+    //             protocol: 'file:',
+    //             slashes: false
+    //         })
+    //     )
+
+    //     // Open the DevTools.
+    //     mainWindow.webContents.openDevTools()
+    // } else {	//Enter when packaged into exe runtime
+    //     mainWindow.loadFile('dist/index.html')
+    // }
+
+    mainWindow.loadFile(path.join(__dirname, 'dist/index.html'))
 
     mainWindow.on('closed', function () {
         mainWindow = null
