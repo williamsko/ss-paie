@@ -19,13 +19,13 @@ function createWindow() {
 
     // // Debug
     // if (!environment.production) {
-    //     mainWindow.loadURL(
-    //         url.format({
-    //             pathname: require('path').join(__dirname, 'dist/index.html'),
-    //             protocol: 'file:',
-    //             slashes: false
-    //         })
-    //     )
+    mainWindow.loadURL(
+        url.format({
+            pathname: path.join(__dirname, 'dist/index.html'),
+            protocol: 'file:',
+            slashes: true
+        })
+    )
 
     //     // Open the DevTools.
     //     mainWindow.webContents.openDevTools()
@@ -33,7 +33,7 @@ function createWindow() {
     //     mainWindow.loadFile('dist/index.html')
     // }
 
-    mainWindow.loadFile(path.join(__dirname, 'dist/index.html'))
+    // mainWindow.loadFile(path.join(__dirname, 'dist/index.html'))
 
     mainWindow.on('closed', function () {
         mainWindow = null

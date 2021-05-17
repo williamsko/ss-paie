@@ -33,12 +33,11 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "start:electron": "ng build --base-href ./ && electron .",
+    "start:electron": "ng build --configuration=production --base-href ./ && electron .",
     "electron": "ng build --prod && npm run electron .",
     "electron:linux": "npm run build:prod && electron-builder build --linux",
     "electron:windows": "npm run build:prod && electron-builder build --windows",
-    "electron:mac": "ng build --configuration=production --base-href ./ && electron-builder build --mac",
-    "electron:mac-old": "npm run build:prod && electron-builder build --mac"
+    "electron:mac": "ng build --configuration=production --base-href ./ && electron-builder build --mac"
   },
   "private": true,
   "dependencies": {

@@ -6,7 +6,7 @@
   <!-- Sidebar - Brand -->
   <a
     class="sidebar-brand d-flex align-items-center justify-content-center"
-    href="#"
+    routerLink="#"
   >
     <div class="sidebar-brand-icon rotate-n-15">
       <em class="fas fa-shuttle-van"></em>
@@ -20,21 +20,29 @@
   <!-- Nav Item - Dashboard -->
 
   <li class="nav-item active">
-    <a class="nav-link" href="/home/">
+    <a class="nav-link" routerLink="/home/" routerLinkActive="active">
       <em class="fas fa-fw fa-tachometer-alt"></em>
       <span>Bienvenue</span></a
     >
   </li>
   <!-- Nav Item - Pages Collapse Menu -->
   <li class="nav-item">
-    <a class="nav-link collapsed" href="/salaries/">
+    <a
+      class="nav-link collapsed"
+      routerLink="/salaries/"
+      routerLinkActive="active"
+    >
       <i class="fas fa-fw fa-users"></i>
       <span>Salariés</span>
     </a>
   </li>
   <!-- Nav Item - Pages Collapse Menu -->
   <li class="nav-item">
-    <a class="nav-link collapsed" href="/reporting/">
+    <a
+      class="nav-link collapsed"
+      routerLink="/reporting/"
+      routerLinkActive="active"
+    >
       <em class="fas fa-fw fa-clipboard"></em>
       <span>Rapports</span>
     </a>
@@ -47,7 +55,11 @@
   <!-- Heading -->
   <div class="sidebar-heading">Configurations</div>
   <li class="nav-item">
-    <a class="nav-link collapsed" href="/param-smtp/">
+    <a
+      class="nav-link collapsed"
+      routerLink="/param-smtp/"
+      routerLinkActive="active"
+    >
       <em class="fas fa-fw fa-balance-scale"></em>
       <span>Paramètres SMTP</span>
     </a>
