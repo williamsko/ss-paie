@@ -13,7 +13,7 @@ export class EditReportingComponent implements OnInit {
     this.code = this.router.snapshot.paramMap.get('code');
     this.fichesPaie = ObjectUtility.getFichesPaie(this.code);
 
-    // localStorage.removeItem('0e2100610aca4d77a13f0b00805bce4a');
+    // localStorage.removeItem('c185e6ec72ce45da82d14efb7f9c5b1c');
   }
   title = 'dropzone';
   errors: number[] = [];
@@ -25,19 +25,32 @@ export class EditReportingComponent implements OnInit {
 
   constructor(private router: ActivatedRoute) {}
 
-  onSelect(event) {
-    event.addedFiles.forEach((element) => {
-      const fiche: FichePaie = {
-        name: element.name,
-        path: element.path,
-      };
-      ObjectUtility.storeFichesPaie(fiche, this.code);
+  getBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = (error) => reject(error);
+      reader.readAsDataURL(file);
     });
-    this.fichesPaie = ObjectUtility.getFichesPaie(this.code);
+  }
+
+  onSelect(event) {
+    console.log(event.addedFiles);
+    event.addedFiles.forEach((element) => {
+      this.getBase64(element).then((data) => {
+        const fiche: FichePaie = {
+          name: element.name,
+          path: data,
+        };
+        ObjectUtility.storeFichesPaie(fiche, this.code);
+        this.fichesPaie = ObjectUtility.getFichesPaie(this.code);
+      });
+    });
   }
 
   onRemove(event) {
     this.fichesPaie.splice(this.fichesPaie.indexOf(event), 1);
+    ObjectUtility.forceStoreFichesPaie(this.fichesPaie, this.code);
   }
 
   public hasError(index: number): boolean {

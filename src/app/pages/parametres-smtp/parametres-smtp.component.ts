@@ -22,24 +22,33 @@ export class ParametresSmtpComponent implements OnInit {
     private paramSmtpService: ParamSmtpService
   ) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.paramSMTP = JSON.parse(localStorage.getItem('SMTP'));
     this.form = this.createFormGroup();
   }
 
   createFormGroup(): FormGroup {
+    if (this.paramSMTP !== null) {
+      return this.formBuilder.group({
+        identifiant: [this.paramSMTP.identifiant, Validators.required],
+        password: [this.paramSMTP.password, Validators.required],
+        domain: [this.paramSMTP.domain, Validators.required],
+        port: [this.paramSMTP.port, Validators.required],
+      });
+    }
     return this.formBuilder.group({
-      identifiant: [this.paramSMTP.identifiant, Validators.required],
-      password: [this.paramSMTP.password, Validators.required],
-      domain: [this.paramSMTP.domain, Validators.required],
-      port: [this.paramSMTP.port, Validators.required],
+      identifiant: ['', Validators.required],
+      password: ['', Validators.required],
+      domain: ['', Validators.required],
+      port: ['', Validators.required],
     });
   }
 
   addParametreSMTP(): void {
+    console.log(this.form.valid);
     if (!this.form.valid) {
-      this.shouldDisplayErrorMessage = true;
       this.errorMessage = 'Vous devez remplir tous les champs';
+      this.shouldDisplayErrorMessage = true;
     } else {
       this.shouldDisplayErrorMessage = false;
 

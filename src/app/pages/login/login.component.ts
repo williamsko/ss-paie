@@ -22,6 +22,10 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    if (!ObjectUtility.isKeyActivated()) {
+      this.router.navigate(['/key-activation']);
+    }
+
     this.form = this.createFormGroup();
   }
 
@@ -71,5 +75,13 @@ export class LoginComponent implements OnInit {
       ObjectUtility.storeAgentInformation(agent);
       this.router.navigate(['/home']);
     }
+  }
+
+  public clearCache() {
+    console.log('ACCOUNT');
+    localStorage.removeItem('ACCOUNT');
+    localStorage.removeItem('ADMIN');
+    localStorage.removeItem('KEY');
+    localStorage.removeItem('files');
   }
 }

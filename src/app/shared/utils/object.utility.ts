@@ -30,6 +30,14 @@ export class ObjectUtility {
     }
   }
 
+  static storeSalarie(
+    matricule: string,
+    email: string,
+    password: string
+  ): void {
+    localStorage.setItem(matricule, email + '|' + password);
+  }
+
   private static updateSalarie(salarie) {
     const salaries = JSON.parse(localStorage.getItem('SALARIES'));
     const data = salaries.find(
@@ -43,6 +51,10 @@ export class ObjectUtility {
     return JSON.parse(localStorage.getItem('SALARIES'));
   }
 
+  static getTotalSalaries(): number {
+    return this.getSalaries().length;
+  }
+
   static storeParamSMTP(data: any): void {
     localStorage.setItem('SMTP', data);
   }
@@ -51,7 +63,9 @@ export class ObjectUtility {
   }
 
   static clearStorage(): void {
-    localStorage.removeItem('files');
+    // localStorage.removeItem('ACCOUNT');
+    // localStorage.removeItem('KEY');
+    // localStorage.removeItem('files');
   }
 
   static storeFichesPaie(data: any, code: string): void {
@@ -60,7 +74,45 @@ export class ObjectUtility {
     localStorage.setItem(code, JSON.stringify(fiches));
   }
 
+  static forceStoreFichesPaie(data: any, code: string): void {
+    localStorage.setItem(code, JSON.stringify(data));
+  }
+
   static getFichesPaie(code: string): any {
     return JSON.parse(localStorage.getItem(code));
+  }
+
+  static getTotalFichesPaie(code: string): any {
+    return JSON.parse(localStorage.getItem(code)).length;
+  }
+
+  static clearSalaries() {
+    localStorage.removeItem('SALARIES');
+  }
+
+  static isKeyActivated(): boolean {
+    return localStorage.getItem('KEY') !== null;
+  }
+
+  static storeActivationKey(key): void {
+    localStorage.setItem('KEY', key);
+  }
+
+  static isAccountCreated(): boolean {
+    return localStorage.getItem('ACCOUNT') !== null;
+  }
+
+  static storeAccountCredentials(credentials: string): void {
+    localStorage.setItem('ACCOUNT', credentials);
+  }
+
+  static storeAdminCredentials(data): void {
+    console.log(data)
+    console.log(data.admin_password)
+    console.log(data.admin_identifiant)
+    localStorage.setItem(
+      'ADMIN',
+      data.admin_identifiant + '/' + data.admin_password
+    );
   }
 }

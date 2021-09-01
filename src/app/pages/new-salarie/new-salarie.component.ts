@@ -30,17 +30,18 @@ export class NewSalarieComponent implements OnInit {
     const salarie = localStorage.getItem('EDIT_SALARIE');
     if (salarie === null) {
       this.shouldBeEdited = false;
-      this.title = 'Ajout d\'un nouveau salarié'
+      this.title = "Ajout d'un nouveau salarié";
       return this.formBuilder.group({
         firstName: ['', Validators.required],
         lastName: ['', Validators.required],
         email: ['', Validators.required],
         phone_number: ['', Validators.required],
         matricule: ['', Validators.required],
+        password: ['', Validators.required],
       });
     } else {
       this.shouldBeEdited = true;
-      this.title = 'Modification information d\'un nouveau salarié'
+      this.title = "Modification information d'un nouveau salarié";
       const data = JSON.parse(salarie);
       return this.formBuilder.group({
         firstName: [data.firstName, Validators.required],
@@ -48,6 +49,7 @@ export class NewSalarieComponent implements OnInit {
         email: [data.email, Validators.required],
         phone_number: [data.phone, Validators.required],
         matricule: [data.matricule, Validators.required],
+        password: [data.matricule, Validators.required],
       });
     }
   }
@@ -64,6 +66,7 @@ export class NewSalarieComponent implements OnInit {
       const email = this.form.get('email').value;
       const phone = this.form.get('phone_number').value;
       const matricule = this.form.get('matricule').value;
+      const password = this.form.get('password').value;
 
       const salarie: Salarie = {
         firstName: firstName,
@@ -71,6 +74,7 @@ export class NewSalarieComponent implements OnInit {
         email: email,
         phone: phone,
         matricule: matricule,
+        password: password,
       };
       ObjectUtility.storeSalaries(salarie, this.shouldBeEdited);
       this.successMessage = 'La période a bien été créée';

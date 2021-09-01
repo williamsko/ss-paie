@@ -17,6 +17,9 @@ import { NewReportingComponent } from './pages/new-reporting/new-reporting.compo
 import { EditReportingComponent } from './pages/edit-reporting/edit-reporting.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxDropzoneModule } from 'ngx-dropzone';
+import { KeyActivationComponent } from './pages/key-activation/key-activation.component';
+import { RegistrationComponent } from './pages/registration/registration.component';
+import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -33,6 +36,9 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
     TopbarComponent,
     NewReportingComponent,
     EditReportingComponent,
+    KeyActivationComponent,
+    RegistrationComponent,
+    ResetPasswordComponent,
   ],
   imports: [
     BrowserModule,

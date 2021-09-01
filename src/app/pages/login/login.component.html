@@ -1,18 +1,3 @@
-<!-- <form [formGroup]="form" (ngSubmit)="signin()">
-  <label><b>User Name </b> </label>
-  <input type="text" name="Uname" id="Uname" placeholder="Username" />
-  <br /><br />
-  <label><b>Password </b> </label>
-  <input type="Password" name="Pass" id="Pass" placeholder="Password" />
-  <br /><br />
-  <button type="submit" name="log" id="log">Login</button>
-  <br /><br />
-  <input type="checkbox" id="check" />
-  <span>Remember me</span>
-  <br /><br />
-  Forgot <a href="#">Password</a>
-</form> -->
-<!-- Default form login -->
 
 <div class="bg-gradient-primary container">
   <!-- Outer Row -->
@@ -75,6 +60,13 @@
                   <br />
                 </form>
                 <hr />
+                <button
+                    (click)="clearCache()"
+                    aria-label="Vider le cache"
+                    type="button"
+                  >
+                    <span aria-hidden="true">×</span>
+                  </button>
               </div>
             </div>
           </div>

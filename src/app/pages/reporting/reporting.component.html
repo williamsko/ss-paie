@@ -17,7 +17,7 @@
           >
             <h1 class="h3 mb-0 text-gray-800">Liste des rapports</h1>
             <a
-              href="/new-reporting/"
+              routerLink="/new-reporting/"
               class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
             >
               <em class="fas fa-download fa-sm text-white-50"></em> Nouveau
@@ -48,7 +48,7 @@
                       <tr *ngFor="let report of reports">
                         <td class>{{ report.startDate | date }}</td>
                         <td>{{ report.endDate | date }}</td>
-                        <td>0</td>
+                        <td>{{report.totalReportLoaded}}</td>
                         <td>0</td>
                         <td>0</td>
                         <td>{{ report.dateCreation | date }}</td>
@@ -61,12 +61,13 @@
                             <em class="fas fa-sm text-white-50"></em>
                             Editer
                           </a>
-                          <a
+                          <button (click)="sendEmail(report)"
                             class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm ml-1"
                           >
+                          
                             <em class="fas fa-sm text-white-50"></em>
                             Valider
-                          </a>
+                          </button>
                           <a
                             class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm ml-1"
                           >

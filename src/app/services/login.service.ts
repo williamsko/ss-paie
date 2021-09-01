@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ObjectUtility } from '../shared/utils/object.utility';
 
 @Injectable({
   providedIn: 'root',
@@ -13,21 +14,32 @@ export class LoginService {
     console.log(iusername);
     console.log(ipassword);
 
-    // if (iusername === 'w' && ipassword === '&&11&&11') {
-    return {
-      address: 'TEST',
-      code: 'TEST',
-      firstName: 'TEST',
-      lastName: 'TEST',
-      phoneNumber: 'TEST',
-      entreprise: {
+    console.log('ACCOUNT', localStorage.getItem('ACCOUNT'));
+    var credentials = localStorage.getItem('ACCOUNT').split('/');
+    var admin_credentials = localStorage.getItem('ADMIN').split('/');
+
+    let isAdmin =
+      iusername === admin_credentials[0] && ipassword === admin_credentials[1];
+
+    if (
+      (iusername === credentials[0] && ipassword === credentials[1]) ||
+      (iusername === admin_credentials[0] && ipassword === admin_credentials[1])
+    ) {
+      return {
+        isAdmin: isAdmin,
         address: 'TEST',
         code: 'TEST',
+        firstName: 'TEST',
+        lastName: 'TEST',
         phoneNumber: 'TEST',
-        email: 'TEST',
-        brandName: 'TEST',
-      },
-    };
-    //  }
+        entreprise: {
+          address: 'TEST',
+          code: 'TEST',
+          phoneNumber: 'TEST',
+          email: 'TEST',
+          brandName: 'TEST',
+        },
+      };
+    }
   }
 }

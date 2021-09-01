@@ -4,5 +4,5 @@ export interface Salarie {
   email: string;
   phone: string;
   matricule: string;
+  password: string;
 }
- 
